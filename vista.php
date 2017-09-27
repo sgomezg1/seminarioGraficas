@@ -28,6 +28,13 @@
             type : 'POST',
             cache: false,
             success : function(data) {
+              var da = [];
+              var da2 = [];
+              da = data['vector'].split(',');
+              for (var i = 0; i < da.length; i++) {
+                var nn = parseFloat(da[i]);
+                da2.push(nn);
+              }
               Highcharts.chart('container1', {
                 title: {
                     text: 'Datos de Temperatura Jardin Vertical'
@@ -52,13 +59,7 @@
                 },
                 series: [{
                     name: 'Temperatura',
-                    data: (function(){
-                    var array = [];
-                    array = data.vector;
-                    for(var i=0;i>=array.length;i++){
-                      <?php echo "["?>array[i]['val_temp']<?php echo "]"; ?>
-                    }
-                  }),
+                    data: da2,
                 }],
 
                 responsive: {
@@ -79,6 +80,7 @@
             },
             error : function(data) {
               console.log("alguna mierda paso");      
+              console.log(data);
             }
           });
         break;
@@ -119,13 +121,7 @@
                 series: [{
                   name: 'Humedad',
                      
-                  data: (function(){
-                    var array = [];
-                    array = data.vector;
-                    for(var i=0;i>=array.length;i++){
-                      array[i]['val_temp']+", ";
-                    }
-                  }),
+                  data: da2,
                 }],
 
                 responsive: {
@@ -146,6 +142,7 @@
             },
             error : function(data) {
               console.log("alguna mierda paso");      
+              console.log(data);
             }
           });
         break;
@@ -185,13 +182,7 @@
 
                 series: [{
                     name: 'Calidad de aire',
-                    data: (function(){
-                      var array = [];
-                      array = data.vector;
-                      for(var i=0;i>=array.length;i++){
-                        array[i]['val_temp']+", ";
-                      }
-                    }),
+                    data: da2,
                 }],
 
                 responsive: {
@@ -211,7 +202,8 @@
               });
             },
             error : function(data) {
-              console.log("alguna mierda paso");      
+              console.log("alguna mierda paso");
+              console.log(data);
             }
           });
         break;

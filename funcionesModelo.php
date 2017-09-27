@@ -5,11 +5,8 @@
 			$db = new conexion();
 			$this->conexion = $db->conectar();
 		}
-		public function vista_inicial(){
-			require("vista.php");
-		}
 		public function consultar_parametros($tabla, $fechainicial, $fechafinal){
-			$consulta = $this->conexion->prepare("select * from ".$tabla." where fecha between :fechainicial and :fechafinal");
+			$consulta = $this->conexion->prepare("select * from ".$tabla." where fechainicio between :fechainicial and :fechafinal");
 			$consulta->bindParam(":fechainicial", $fechainicial);
 			$consulta->bindParam(":fechafinal", $fechafinal);
 			$consulta->execute();
