@@ -30,8 +30,14 @@
             success : function(data) {
               var da = [];
               var da2 = [];
+              var hora = $("#fechainicial1").val();
+              var string = hora.toString();
+              var substr = string.substring(8,10);
               da = data['vector'].split(',');
-              for (var i = 0; i < da.length; i++) {
+              console.log(data['vector']['fecha']);
+              var diferecia_fechas = $("#fechainicial1").diff($("#fechainicial1"), 'days');
+              var difechas = parseFloat(diferecia_fechas);
+              for (var i = 0; i < difechas; i++) {
                 var nn = parseFloat(da[i]);
                 da2.push(nn);
               }
@@ -54,7 +60,7 @@
                 },
                 plotOptions: {
                     series: {
-                        pointStart: <?php echo date("d");?>
+                        pointStart: parseFloat(substr)
                     }
                 },
                 series: [{
@@ -91,6 +97,19 @@
             type : 'POST',
             cache: false,
             success : function(data) {
+              var da = [];
+              var da2 = [];
+              var hora = $("#fechainicial2").val();
+              var string = hora.toString();
+              var substr = string.substring(8,10);
+              da = data['vector'].split(',');
+              console.log(data['vector']['fecha']);
+              var diferecia_fechas = $("#fechainicial2").diff($("#fechainicial2"), 'days');
+              var difechas = parseFloat(diferecia_fechas);
+              for (var i = 0; i < difechas; i++) {
+                var nn = parseFloat(da[i]);
+                da2.push(nn);
+              }
               Highcharts.chart('container2', {
 
                 title: {
@@ -114,7 +133,7 @@
 
                 plotOptions: {
                     series: {
-                        pointStart: <?php echo date("d");?>
+                        pointStart: parseFloat(substr)
                     }
                 },
 
@@ -153,6 +172,19 @@
             type : 'POST',
             cache: false,
             success : function(data) {
+              var da = [];
+              var da2 = [];
+              var hora = $("#fechainicial3").val();
+              var string = hora.toString();
+              var substr = string.substring(8,10);
+              da = data['vector'].split(',');
+              console.log(data['vector']['fecha']);
+              var diferecia_fechas = $("#fechainicial3").diff($("#fechainicial3"), 'days');
+              var difechas = parseFloat(diferecia_fechas);
+              for (var i = 0; i < difechas; i++) {
+                var nn = parseFloat(da[i]);
+                da2.push(nn);
+              }
               Highcharts.chart('container', {
 
                 title: {
@@ -176,7 +208,7 @@
 
                 plotOptions: {
                     series: {
-                        pointStart: <?php echo date("d");?>
+                        pointStart: parseFloat(substr)
                     }
                 },
 
